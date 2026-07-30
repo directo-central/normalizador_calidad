@@ -262,7 +262,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     <details class="help">
       <summary>¿Qué hace cada columna automática?</summary>
       <div class="body">
-        <b>Fecha servicio</b> = Fecha_Servicio · <b>Hora</b> = hora de Fecha_Asignado (la que trae hora real) · <b>Unidad de negocio</b> = UNIDAD_NEGOCIO_DIRECTO · <b>Medio reserva</b> = DescModoReserva · <b>R/I</b> = TIPO_PETICION · <b>Cliente</b> = Particular si NombreComercial es PARTICULAR / DIRECTO PARTICULAR / PARTICULAR 2016-2018, sino Corporativo · <b>Usuario afectado</b> = Pasajero_Servicio, y si está vacío usa NombreCompleto · <b>Cliente/empresa</b> = NombreComercial · <b>Flota, puesto</b> = GRUPO_NEGOCIO · <b>N° móvil</b> = IdConductor · <b>Nombres conductor</b> = Conductor. Todo en formato tipo título.
+        <b>Fecha servicio</b> = Fecha_Servicio · <b>Hora</b> = hora de Fecha_Servicio · <b>Unidad de negocio</b> = UNIDAD_NEGOCIO_DIRECTO · <b>Medio reserva</b> = DescModoReserva · <b>R/I</b> = TIPO_PETICION · <b>Cliente</b> = Particular si NombreComercial es PARTICULAR / DIRECTO PARTICULAR / PARTICULAR 2016-2018, sino Corporativo · <b>Usuario afectado</b> = Pasajero_Servicio, y si está vacío usa NombreCompleto · <b>Cliente/empresa</b> = NombreComercial · <b>Flota, puesto</b> = GRUPO_NEGOCIO · <b>N° móvil</b> = IdConductor · <b>Nombres conductor</b> = Conductor. Todo en formato tipo título.
       </div>
     </details>
   </section>
@@ -588,7 +588,7 @@ function buildRow(rec,cod){
   const nc=(r.nombreComercial||"").trim().toUpperCase();
   const cliente=found?(PARTICULAR_SET.has(nc)?"Particular":"Corporativo"):"";
   const pas=(!isBlank(r.pasajeroServicio))?r.pasajeroServicio:r.nombreCompleto;
-  const auto={fechaServicio:found?fmtDate(r.fechaServicio):"",hora:found?fmtTime(r.fechaAsignado):"",
+  const auto={fechaServicio:found?fmtDate(r.fechaServicio):"",hora:found?fmtTime(r.fechaServicio):"",
     unidad:found?proper(r.unidadNegocio):"",medio:found?(r.descModoReserva||""):"",ri:found?(r.tipoPeticion||""):"",
     cliente,usuario:found?proper(pas):"",empresa:found?proper(r.nombreComercial):"",flota:found?proper(r.grupoNegocio):"",
     movil:found?proper(r.idConductor):"",conductor:found?proper(r.conductor):""};
