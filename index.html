@@ -489,7 +489,8 @@ async function parseFile(file){
   for(const[key,name] of Object.entries(FIELDS)){
     let i=hdr.indexOf(name); if(i<0)i=hdr.findIndex(h=>h.toLowerCase()===name.toLowerCase()); idx[key]=i;
   }
-  const faltan=Object.entries(idx).filter(([k,i])=>i<0).map(([k])=>FIELDS[k]);
+  const OPCIONALES=new Set(["creacionFecha"]);
+  const faltan=Object.entries(idx).filter(([k,i])=>i<0 && !OPCIONALES.has(k)).map(([k])=>FIELDS[k]);
   if(faltan.length) throw new Error("Faltan columnas: "+faltan.join(", "));
   const recs=[]; const now=new Date().toISOString();
   for(let r=headerRow+1;r<found.length;r++){
